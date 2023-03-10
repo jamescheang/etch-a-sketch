@@ -1,0 +1,8 @@
+.draw-area {
+    display: flex;
+    height: 250px;
+    width: 250px;
+    background-color: aqua;
+    flex: auto;
+    justify-content: center;
+}
