@@ -1,8 +1,25 @@
-.draw-area {
+.main-content {
     display: flex;
-    height: 250px;
-    width: 250px;
-    background-color: aqua;
-    flex: auto;
     justify-content: center;
+    align-items: center;
+}
+
+.colour-picker {
+    height: 50px;
+    width: 50px;
+    background-color: #363636;
+}
+
+.draw-area {
+    display: grid;
+    height: 500px;
+    width: 500px;
+    background-color: aqua;
+    /* flex: auto; */
+    /* justify-content: center; */
+    grid-template-columns: auto;
+}
+
+.pixel {
+    background-color: yellow;
 }
