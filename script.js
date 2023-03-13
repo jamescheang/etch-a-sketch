@@ -7,6 +7,8 @@ function setPixels(num) {
 
     pixels = num * num;
 
+    drawingArea.replaceChildren();
+
     // create divs as pixel in draw-area container
     for (let i = 0; i < pixels; i++) {
         pixel = document.createElement("div");
@@ -21,7 +23,27 @@ function setPixels(num) {
     drawingArea.style.gridTemplateColumns = totalColumns;
 }
 
-setPixels(16); // change to use the value from the size slider
+var slider = document.getElementById("pixelRange");
+var output = document.getElementsByClassName("grid-size")[0];
+const defaultSize = 16;
+slider.value = defaultSize;
+setPixels(defaultSize);
+// Update the current slider value (each time you drage the slider handle)
+slider.oninput = function () {
+    output.innerHTML = this.value + " x " + this.value;
+    console.log(output.innerHTML);
+    setPixels(this.value); // change to use the value from the size slider
+}
+
+function getPaintColour() {
+    return window.getComputedStyle(document.getElementsByClassName("colour-picker")[0], null).getPropertyValue('background-color');
+}
+
+function setPaint() {
+    document.getElementsByClassName("colour-picker")[0].style.setProperty('background-color', getPaintColour(), null);
+}
+
+setPaint();
 
 // add event listener while hovering over element && left mouse button is clicked, change background colour of the pixel.
 function paintPixel() {
