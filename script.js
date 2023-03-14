@@ -28,24 +28,46 @@ var output = document.getElementsByClassName("grid-size")[0];
 const defaultSize = 16;
 slider.value = defaultSize;
 setPixels(defaultSize);
+
 // Update the current slider value (each time you drage the slider handle)
 slider.oninput = function () {
     output.innerHTML = this.value + " x " + this.value;
-    console.log(output.innerHTML);
+    // console.log(output.innerHTML);
     setPixels(this.value); // change to use the value from the size slider
 }
+
+// add event listener for a onclick of either solid/rainbow/eraser mode
+let paintColour = "";
+let isDrawing = false;
 
 function getPaintColour() {
     return window.getComputedStyle(document.getElementsByClassName("colour-picker")[0], null).getPropertyValue('background-color');
 }
 
-function setPaint() {
-    document.getElementsByClassName("colour-picker")[0].style.setProperty('background-color', getPaintColour(), null);
+paintColour = getPaintColour(); // set default paint colour
+// setPaint("red");
+
+function setPaint(colour) {
+    document.getElementsByClassName("colour-picker")[0].style.setProperty('background-color', colour, null);
+    paintColour = colour;
+    console.log(colour);
 }
 
-setPaint();
+drawingArea.addEventListener('mousedown', function (e) {
+    if (e.explicitOriginalTarget.classList[0] !== 'pixel') return;
+    // console.log("i'm a pixel!");
+    isDrawing = true;
+});
 
-// add event listener while hovering over element && left mouse button is clicked, change background colour of the pixel.
-function paintPixel() {
+drawingArea.addEventListener("mouseover", (e) => {
+    if (isDrawing) {
+        e.explicitOriginalTarget.style.setProperty('background-color', paintColour, null);
+        console.log(paintColour);
+    }
+});
 
-}
+window.addEventListener("mouseup", (e) => {
+    if (isDrawing) {
+        isDrawing = false;
+    }
+});
