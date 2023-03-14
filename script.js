@@ -45,7 +45,6 @@ function getPaintColour() {
 }
 
 paintColour = getPaintColour(); // set default paint colour
-// setPaint("red");
 
 function setPaint(colour) {
     document.getElementsByClassName("colour-picker")[0].style.setProperty('background-color', colour, null);
@@ -53,16 +52,15 @@ function setPaint(colour) {
     console.log(colour);
 }
 
-drawingArea.addEventListener('mousedown', function (e) {
-    if (e.explicitOriginalTarget.classList[0] !== 'pixel') return;
+window.addEventListener("mousedown", function (e) {
     // console.log("i'm a pixel!");
     isDrawing = true;
 });
 
-drawingArea.addEventListener("mouseover", (e) => {
+drawingArea.addEventListener("mousemove", (e) => {
     if (isDrawing) {
         e.explicitOriginalTarget.style.setProperty('background-color', paintColour, null);
-        console.log(paintColour);
+        // console.log(paintColour);
     }
 });
 

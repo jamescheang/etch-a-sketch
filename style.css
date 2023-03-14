@@ -1,13 +1,42 @@
+body {
+    background-color: #3cc1ff;
+}
+
 .main-content {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 150px;
 }
 
 .colour-picker {
     height: 50px;
     width: 50px;
     background-color: #363636;
+    border: 1px solid #fff;
+}
+
+.switch-toggle {
+    float: left;
+    background: #7c7c7c;
+    border-radius: 5px;
+    border: 1px solid #fff;
+}
+
+.switch-toggle input {
+    position: absolute;
+    opacity: 0;
+}
+
+.switch-toggle input+label {
+    padding: 7px;
+    float: left;
+    color: #fff;
+    cursor: pointer;
+}
+
+.switch-toggle input:checked+label {
+    background: rgb(0, 143, 71);
 }
 
 .slidecontainer {
@@ -78,5 +107,5 @@
 }
 
 .pixel {
-    /* background-color: yellow; */
+    background-color: #fff;
 }

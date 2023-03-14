@@ -9,15 +9,24 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 
-<body>
+<body ondragstart="return false;" ondrop="return false;">
     <div class="header">Pixel Perfect</div>
     <div class="main-content">
         <div class="settings">
             <div class="colour-picker"></div>
-            <div class="solid-mode">solid</div>
-            <div class="rainbow-mode">rainbow</div>
-            <div class="eraser-mode">eraser</div>
-            <div class="clear-mode">clear</div>
+            <div class="switch-toggle">
+                <input id="solid" name="state-mode" type="radio"
+                    checked="checked" />
+                <label for="solid" onclick="">solid</label>
+
+                <input id="rainbow" name="state-mode" type="radio" checked="" />
+                <label for="rainbow" onclick="">rainbow</label>
+
+                <input id="eraser" name="state-mode" type="radio"
+                    checked="checked" />
+                <label for="eraser" onclick="">eraser</label>
+            </div>
+            <div class="clear" id="clear">clear</div>
             <div class="grid-size">16 x 16</div>
             <div class="size-slider">
                 <div class="slidecontainer">
