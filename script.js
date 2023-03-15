@@ -39,6 +39,9 @@ slider.oninput = function () {
 // add event listener for a onclick of either solid/rainbow/eraser mode
 let paintColour = "";
 let isDrawing = false;
+let isSolid = true;
+let isRainbow = false;
+let isEraser = false;
 
 function getPaintColour() {
     return window.getComputedStyle(document.getElementsByClassName("colour-picker")[0], null).getPropertyValue('background-color');
@@ -57,10 +60,15 @@ window.addEventListener("mousedown", function (e) {
     isDrawing = true;
 });
 
-drawingArea.addEventListener("mousemove", (e) => {
-    if (isDrawing) {
+drawingArea.addEventListener("mouseover", (e) => {
+    if (isDrawing && isSolid) {
         e.explicitOriginalTarget.style.setProperty('background-color', paintColour, null);
-        // console.log(paintColour);
+    }
+    if (isDrawing && isRainbow) {
+        e.explicitOriginalTarget.style.setProperty('background-color', '#' + parseInt(Math.random() * 0xffffff).toString(16), null);
+    }
+    if (isDrawing && isEraser) {
+        e.explicitOriginalTarget.style.removeProperty('background-color');
     }
 });
 
@@ -68,4 +76,37 @@ window.addEventListener("mouseup", (e) => {
     if (isDrawing) {
         isDrawing = false;
     }
+});
+
+document.getElementsByClassName("switch-toggle")[0].addEventListener("click", (e) => {
+    if (e.target.tagName !== "INPUT") return;
+    // console.log(e.target.value);
+
+    switch (e.target.value) {
+        case "solid":
+            isSolid = true;
+            isRainbow = false;
+            isEraser = false;
+            break;
+        case "rainbow":
+            isSolid = false;
+            isRainbow = true;
+            isEraser = false;
+            break;
+        case "eraser":
+            isSolid = false;
+            isRainbow = false;
+            isEraser = true;
+            break;
+
+        default:
+            break;
+    }
+});
+
+document.getElementById("clear").addEventListener("click", (e) => {
+    // console.log(document.getElementsByClassName("pixel"));
+    document.querySelectorAll(".pixel").forEach(node => {
+        node.style.removeProperty('background-color');
+    });
 });

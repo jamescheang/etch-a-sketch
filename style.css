@@ -1,5 +1,6 @@
 body {
-    background-color: #3cc1ff;
+    /* background-color: #3cc1ff; */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .main-content {
@@ -7,6 +8,14 @@ body {
     justify-content: center;
     align-items: center;
     gap: 150px;
+    margin-top: 10%;
+}
+
+.settings {
+    display: flex;
+    flex-direction: column;
+    gap: 45px;
+    align-items: center;
 }
 
 .colour-picker {
@@ -28,6 +37,11 @@ body {
     opacity: 0;
 }
 
+.switch-toggle input:hover+label:hover {
+    transform: scale(1.1);
+    transition: 5ms;
+}
+
 .switch-toggle input+label {
     padding: 7px;
     float: left;
@@ -37,6 +51,35 @@ body {
 
 .switch-toggle input:checked+label {
     background: rgb(0, 143, 71);
+    border-radius: 5px;
+}
+
+.clear-btn {
+    background-color: #7c7c7c;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    text-align: center;
+    font-size: 16px;
+    margin: 4px 2px;
+    opacity: 0.6;
+    transition: 0.3s;
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 5px;
+    /* box-shadow: 0 9px #999; */
+}
+
+.clear-btn:hover {
+    opacity: 1;
+}
+
+.clear-btn:active {
+    background-color: #ff6004;
+    /* box-shadow: 0 5px #666; */
+    transform: translateY(4px);
+    transition: 0.1ms;
 }
 
 .slidecontainer {
