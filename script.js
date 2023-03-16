@@ -1,4 +1,6 @@
 const drawingArea = document.getElementsByClassName("draw-area")[0];
+const colourPicker = document.getElementsByClassName("colour-picker")[0];
+const switchToggle = document.getElementsByClassName("switch-toggle")[0];
 
 //function to set the drawing area size eg. 16x16 or 32x32
 function setPixels(num) {
@@ -37,22 +39,21 @@ slider.oninput = function () {
 }
 
 // add event listener for a onclick of either solid/rainbow/eraser mode
-let paintColour = "";
+let paintColour = "#363636";
 let isDrawing = false;
 let isSolid = true;
 let isRainbow = false;
 let isEraser = false;
+switchToggle.children[0].checked = true;
 
 function getPaintColour() {
-    return window.getComputedStyle(document.getElementsByClassName("colour-picker")[0], null).getPropertyValue('background-color');
+    return colourPicker.value;
 }
 
-paintColour = getPaintColour(); // set default paint colour
+colourPicker.value = paintColour;
 
 function setPaint(colour) {
-    document.getElementsByClassName("colour-picker")[0].style.setProperty('background-color', colour, null);
     paintColour = colour;
-    console.log(colour);
 }
 
 window.addEventListener("mousedown", function (e) {
@@ -78,12 +79,13 @@ window.addEventListener("mouseup", (e) => {
     }
 });
 
-document.getElementsByClassName("switch-toggle")[0].addEventListener("click", (e) => {
+switchToggle.addEventListener("click", function setMode(e) {
     if (e.target.tagName !== "INPUT") return;
     // console.log(e.target.value);
 
     switch (e.target.value) {
         case "solid":
+            setPaint(getPaintColour());
             isSolid = true;
             isRainbow = false;
             isEraser = false;
@@ -109,4 +111,13 @@ document.getElementById("clear").addEventListener("click", (e) => {
     document.querySelectorAll(".pixel").forEach(node => {
         node.style.removeProperty('background-color');
     });
+});
+
+colourPicker.addEventListener("change", e => {
+    switchToggle.children[0].checked = true;
+    setPaint(getPaintColour());
+    isSolid = true;
+    isRainbow = false;
+    isEraser = false;
+    return;
 });

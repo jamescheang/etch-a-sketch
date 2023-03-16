@@ -5,15 +5,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Etch-a-Sketch</title>
     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body ondragstart="return false;" ondrop="return false;">
-    <div class="header">Pixel Perfect</div>
+    <div class="header">
+        <h1>Etch-a-Sketch</h1>
+    </div>
     <div class="main-content">
         <div class="settings">
-            <div class="colour-picker"></div>
+            <input type="color" class="colour-picker">
             <div class="switch-toggle">
                 <input id="solid" name="state-mode" type="radio"
                     checked="checked" value="solid" />
@@ -40,7 +44,13 @@
         </div>
         <div class="draw-area"></div>
     </div>
-    <div class="footer"></div>
+    <div class="footer">
+        <p>Copyright ©
+            <script>document.write(new Date().getFullYear())</script>
+            jamescheang <a href="https://github.com/jamescheang/"><i
+                    class="fa fa-github"></i></a>
+        </p>
+    </div>
     <script src="./script.js"></script>
 </body>
 
